@@ -6,7 +6,7 @@ var system;
 var sentence;
 
 // Elements
-var textContainer, canvas;
+var textContainer, canvas, systemDropdown;
 
 // Buttons
 var showTextButton, showCanvasButton, generateButton, resetButton;
@@ -17,7 +17,7 @@ function setup() {
 }
 
 function setupSystem() {
-  system = getSystem(0);
+  system = getSystems()[systemDropdown.value()];
 
   // Grammar setup
   sentence = system.axiom;
@@ -66,8 +66,8 @@ function drawSentence() {
   stroke(0);
   strokeWeight(2);
 
+  // Apply base system transformations
   translate(system.startX, system.startY);
-
   rotate(radians(system.startAngle));
 
   // For each character
@@ -110,6 +110,14 @@ function setupDOM() {
   canvas = createCanvas(600, 600);
   canvas.position(10, 50);
   canvas.hide();
+
+  systems = getSystems();
+  systemDropdown = createSelect();
+  systemDropdown.position(360, 10);
+  for (var s = 0; s < systems.length; s++) {
+    systemDropdown.option(systems[s].name, s);
+  }
+  systemDropdown.changed(changeSystem);
 }
 
 function showText() {
@@ -124,6 +132,11 @@ function showCanvas() {
   textContainer.hide();
   canvas.show();
   showTextButton.show();
+}
+
+function changeSystem() {
+  setupSystem();
+  reset();
 }
 
 function reset() {

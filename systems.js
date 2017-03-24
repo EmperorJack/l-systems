@@ -1,8 +1,10 @@
-function getSystem(index) {
+// The systems are defined within this function so that they can access the p5.js functionality
+function getSystems() {
   return [
 
   // Pythagoras tree
   {
+    name: "Pythagoras tree",
     axiom: "0",
     rules: [
       {
@@ -53,6 +55,7 @@ function getSystem(index) {
 
   // Fractal Plant
   {
+    name: "Fractal Plant",
     axiom: "F",
     rules: [
       {
@@ -109,6 +112,7 @@ function getSystem(index) {
 
   // Sierpinski triangle
   {
+    name: "Sierpinski triangle",
     axiom: "F-G-G",
     rules: [
       {
@@ -157,6 +161,7 @@ function getSystem(index) {
 
   // Dragon curve
   {
+    name: "Dragon curve",
     axiom: "FX",
     rules: [
       {
@@ -202,5 +207,5 @@ function getSystem(index) {
     ]
   }
 
-  ][index]
+  ]
 }
